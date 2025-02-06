@@ -1,0 +1,42 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.dashboardContainer {
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: 75px auto 75px;
+    grid-template-areas:
+        "dash-header dash-header"
+        "dash-bar dash-main"
+        "dash-footer dash-footer";
+
+    height: 100vh;
+    gap: 10px;
+    padding: 10px;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+}
+
+.dashboardContainer > *{
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dash-header {
+    grid-area: dash-header;
+}
+
+.dash-main {
+    grid-area: dash-main;
+}
+
+.dash-bar {
+    grid-area: dash-bar;
+}
+
+.dash-footer {
+    grid-area: dash-footer;
+}

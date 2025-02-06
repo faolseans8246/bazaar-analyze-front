@@ -1,0 +1,91 @@
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-time-date {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-time-part,
+.header-date-part {
+    margin-right: 15px;
+}
+
+.header-admin-panel-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*margin-top: -15px;*/
+}
+
+/* Avatar images */
+.header-avatar-image-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header-avatar-image {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.header-notifications-bell-icon,
+.header-notifications-message-icon {
+    font-size: 30px;
+}
+
+.header-notification-bell-button,
+.header-notifications-message-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.header-notification-bell-button:hover,
+.header-notifications-message-button:hover {
+    color: #c1bebe;
+}
+
+/* Search qismi bilan ishlash qismi */
+.header-search-frame {
+    position: relative;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.header-search-input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.header-search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.header-search-icon {
+    position: absolute;
+    right: 15px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.header-search-icon:hover {
+    color: #007bff;
+}
