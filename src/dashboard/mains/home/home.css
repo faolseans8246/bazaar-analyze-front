@@ -1,0 +1,13 @@
+
+.homeContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+}
+
+.homeContainer > div {
+    background: #2A5298FF;
+    border-radius: 5px;
+    padding: 10px;
+}
