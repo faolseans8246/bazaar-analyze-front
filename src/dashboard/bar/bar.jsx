@@ -1,12 +1,89 @@
 import React from "react";
 import './bar.css';
 
+import { RiShoppingBasketLine } from "react-icons/ri";
+import { SlBasket } from "react-icons/sl";
+import { BsCashCoin } from "react-icons/bs";
+import { PiNewspaperClippingDuotone } from "react-icons/pi";
+import { FaStrava } from "react-icons/fa";
+import { MdCalculate } from "react-icons/md";
+import { FaRegCreditCard } from "react-icons/fa6";
+
+
+
 function BarFunc() {
 
     return (
 
         <div className="barContainer">
-            Bar
+
+            <div className="bar-bazaar-statuses">
+                <ul className="bar-bazaar-list-block">
+                    <li className="bar-bazaar-status">
+                        <div className="bar-bazaar-line-icons">
+                            <RiShoppingBasketLine />
+                        </div>
+                        <div className="bar-bazaar-line-text">
+                            Local status
+                        </div>
+                    </li>
+
+                    <li className="bar-bazaar-status">
+                        <div className="bar-bazaar-line-icons">
+                            <SlBasket />
+                        </div>
+                        <div className="bar-bazaar-line-text">
+                            Global status
+                        </div>
+                    </li>
+
+                    <li className="bar-bazaar-status">
+                        <div className="bar-bazaar-line-icons">
+                            <BsCashCoin />
+                        </div>
+                        <div className="bar-bazaar-line-text">
+                            Valute status
+                        </div>
+                    </li>
+
+                    <li className="bar-bazaar-status">
+                        <div className="bar-bazaar-line-icons">
+                            <PiNewspaperClippingDuotone />
+                        </div>
+                        <div className="bar-bazaar-line-text">
+                            News
+                        </div>
+                    </li>
+
+                    <li className="bar-bazaar-status">
+                        <div className="bar-bazaar-line-icons">
+                            <FaStrava />
+                        </div>
+                        <div className="bar-bazaar-line-text">
+                            Analitics
+                        </div>
+                    </li>
+
+                    <li className="bar-bazaar-status">
+                        <div className="bar-bazaar-line-icons">
+                            <MdCalculate />
+                        </div>
+                        <div className="bar-bazaar-line-text">
+                            Calculate
+                        </div>
+                    </li>
+
+                    <li className="bar-bazaar-status">
+                        <div className="bar-bazaar-line-icons">
+                            <FaRegCreditCard />
+                        </div>
+                        <div className="bar-bazaar-line-text">
+                            Cards
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     )
 }

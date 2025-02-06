@@ -7,7 +7,7 @@ function FooterFunc() {
 
         <div className="footerContainer">
 
-            Footer
+            &copy; Create by Feruzbek KHamroev
         </div>
     )
 }
