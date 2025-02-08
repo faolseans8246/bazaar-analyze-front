@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from "react";
 import './header.css';
 
+import { Link } from 'react-router-dom';
+
 import AvatarMain from '../../images/avatar_main.jpg';
+import FinanceLogo from '../../images/Finance_logo.jpg';
 
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineNotificationsActive } from "react-icons/md";
@@ -26,14 +29,34 @@ function HeaderFunc() {
 
         <div className="headerContainer">
 
-            {/* time zone bilan ishlash qismi */}
-            <div className="header-time-date">
-                <div className="header-time-part">
-                    {time.toLocaleTimeString()}
+            <div className="header-left-part-blocks">
+
+                {/* Logo icons part */}
+                <div className="header-logo-block">
+                    <Link to="/" className="header-avatar-logo-link">
+                        <button className="header-avatar-logo-button">
+                            <div className="header-logo-images">
+                                <img src={FinanceLogo} alt="" className="header-logo-image-part"/>
+                            </div>
+
+                            <div className="header-logo-name-text">
+                                <h1 className="header-logo-text-line">
+                                    FinanceBazaar
+                                </h1>
+                            </div>
+                        </button>
+                    </Link>
                 </div>
 
-                <div className="header-date-part">
-                    {time.toLocaleDateString().slice(0, 10)}
+                {/* time zone bilan ishlash qismi */}
+                <div className="header-time-date">
+                    <div className="header-time-part">
+                        {time.toLocaleTimeString()}
+                    </div>
+
+                    <div className="header-date-part">
+                        {time.toLocaleDateString().slice(0, 10)}
+                    </div>
                 </div>
             </div>
 

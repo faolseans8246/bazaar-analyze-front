@@ -8,7 +8,6 @@ function MainFunc() {
     return (
 
         <div className="mainContainer">
-
             <HomePage />
         </div>
     )
