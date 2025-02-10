@@ -1,0 +1,107 @@
+.localStatusContainer {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Karta joylashuvi */
+.local-status-map-blocks {
+    /*background: #f9f9f9;*/
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.local-status-country-notes-main-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.local-status-counter-note-line {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    color: #1ed2c3;
+    letter-spacing: 1px;
+}
+
+.local-status-weight-letter-note-line {
+    margin-right: 10px;
+}
+
+.local-status-map-image-part iframe {
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Valyuta ko‘rsatilishi */
+.local-status-dinamic-block {
+    /*background: #fff;*/
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.local-status-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #00ffe1;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.local-status-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: none;
+}
+
+.local-status-th, .local-status-td {
+    padding: 12px;
+    text-align: center;
+    border: none;
+}
+
+.local-status-th {
+    background: #0f4077;
+    color: #0fe7b4;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.local-status-td {
+    font-size: 16px;
+}
+
+.local-status-td:nth-child(3) {
+    font-weight: bold;
+}
+
+/* Trendning ko‘rsatilishi */
+.local-status-td.up {
+    color: green;
+}
+
+.local-status-td.down {
+    color: red;
+}
+
+/* Mobil moslashuv */
+@media (max-width: 768px) {
+    .localStatusContainer {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+}
