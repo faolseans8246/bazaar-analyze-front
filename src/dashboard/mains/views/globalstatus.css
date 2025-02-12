@@ -1,0 +1,65 @@
+.globalStatusContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(to right, #1e3c72, #2a5298);;
+}
+
+.global-status-trade-table-block {
+    width: 90%;
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.2);
+}
+
+.global-status-trade-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.global-status-th-row {
+    background: #333;
+    color: #00ff00;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 2px solid #00ff00;
+}
+
+.global-status-value-table-td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    transition: background 0.3s;
+}
+
+.global-status-value-table-td img {
+    border-radius: 50%;
+}
+
+.global-status-row-notes:hover {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.global-status-value-link-trade {
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.global-status-value-link-trade:hover {
+    color: #ffcc00;
+}
+
+.price-up {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.price-down {
+    color: #ff0000;
+    font-weight: bold;
+}
