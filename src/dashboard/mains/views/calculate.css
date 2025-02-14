@@ -1,0 +1,142 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+.calculateContainer {
+    width: 50%;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #6E57E0, #A383FF);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.calculateTitle {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.calculateTitle::before {
+    content: "\f3d1";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: -35px;
+    font-size: 28px;
+}
+
+.calculateForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calculateFormGroup {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.calculateLabel {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 16px;
+}
+
+.calculateSelect, .calculateInput {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.calculateSelect:hover, .calculateInput:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.calculateSelect option {
+    color: #333;
+    background: #fff;
+}
+
+.calculateFormGroup i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 18px;
+}
+
+.calculateButton {
+    padding: 12px 20px;
+    background-color: #FFC107;
+    color: #222;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.calculateButton:hover {
+    background-color: #FFA000;
+    transform: scale(1.05);
+}
+
+.calculateButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.calculateResult {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.calculateResultText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculateResultText i {
+    margin-right: 8px;
+    font-size: 22px;
+}
+
+.calculateError {
+    margin-top: 20px;
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+/* Mobil ekranlar uchun */
+@media (max-width: 768px) {
+    .calculateContainer {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .calculateTitle {
+        font-size: 22px;
+    }
+
+    .calculateButton {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
