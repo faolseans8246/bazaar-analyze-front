@@ -1,0 +1,81 @@
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.card-section {
+    flex: 1;
+    min-width: 45%;
+    background: #171d2a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title, .card-transaction-title, .card-list-title, .card-history-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.card-add-form, .card-transaction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.card-add-form input, .card-transaction-form select, .card-transaction-form input {
+    padding: 10px;
+    border: 1px solid #40ff00;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.card-add-button, .card-transaction-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.card-add-button:hover, .card-transaction-button:hover {
+    background-color: #0056b3;
+}
+
+.card-list {
+    list-style: none;
+    padding: 0;
+}
+
+.card-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-history-list {
+    list-style: none;
+    padding: 0;
+}
+
+.card-history-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-section {
+        width: 100%;
+    }
+}
