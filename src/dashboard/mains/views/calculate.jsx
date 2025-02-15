@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './calculate.css';
+import "./calculate.css";
 
 function CalculateFunc() {
     const [currency1, setCurrency1] = useState("USD");
@@ -15,9 +15,6 @@ function CalculateFunc() {
         setResult(null);
 
         const parsedAmount = parseFloat(amount);
-        console.log("Amount:", amount);
-        console.log("Parsed Amount:", parsedAmount);
-
         if (!amount.trim() || isNaN(parsedAmount) || parsedAmount <= 0) {
             setError("Iltimos, to'g'ri musbat raqam kiriting!");
             setLoading(false);
@@ -25,44 +22,44 @@ function CalculateFunc() {
         }
 
         try {
-            console.log("Making API request with:", {
-                from: currency1,
-                to: currency2,
-                amount: parsedAmount
-            });
-
-            const response = await fetch(
-                `http://localhost:1972/api/calculate/rates?from=${currency1}&to=${currency2}&amount=${parsedAmount}`
-            );
-
+            const response = await fetch(`http://localhost:1972/api/calculate/rates?from=${currency1}&to=${currency2}&amount=${parsedAmount}`);
             const data = await response.json();
-            console.log("API Response:", data);
 
-            if (data.success && data.result) {
-                console.log("Qaytarilgan kurs:", data.result);
-                const convertedAmount = (parsedAmount * data.result).toFixed(2);
-                console.log("Hisoblangan qiymat:", convertedAmount);
-                setResult(convertedAmount);
-            } else {
-                console.error("Kursni olishda xatolik:", data);
-                setError(data.message || "Kurs ma'lumotlarini olishda xatolik yuz berdi!");
+            console.log("Backenddan kelgan javob:", data);
+
+            if (!data.success) {
+                console.error("Xatolik: success false bo'ldi!", data);
+                setError("Ma'lumot olishda xatolik yuz berdi!");
+                return;
             }
 
+            if (!data.data || !data.data.convertedAmount || !data.data.rate) {
+                console.error("Xatolik: Backenddan noto‘g‘ri ma'lumot keldi!", data);
+                setError("Natijani olishda muammo yuz berdi!");
+                return;
+            }
+
+            setResult({
+                amount: data.data.convertedAmount.toFixed(2),
+                rate: data.data.rate
+            });
 
         } catch (error) {
-            console.error("API Error:", error);
+            console.error("Server yoki tarmoq xatosi:", error);
             setError("Server bilan bog'lanishda xatolik yuz berdi!");
         } finally {
             setLoading(false);
         }
+
     };
+
 
     return (
         <div className="calculateContainer">
             <h2 className="calculateTitle">Kurs Hisoblash Kalkulyatori</h2>
             <div className="calculateForm">
                 <div className="calculateFormGroup">
-                    <label htmlFor="currency1" className="calculateLabel">Birinchi Kurs:</label>
+                    <label htmlFor="currency1" className="calculateLabel">Kerakli valyutani tanlang:</label>
                     <select
                         id="currency1"
                         className="calculateSelect"
@@ -78,44 +75,33 @@ function CalculateFunc() {
                 </div>
 
                 <div className="calculateFormGroup">
-                    <label htmlFor="currency2" className="calculateLabel">Ikkinchi Kurs:</label>
-                    <div style={{ position: "relative" }}>
-                        <select
-                            id="currency2"
-                            className="calculateSelect"
-                            value={currency2}
-                            onChange={(e) => setCurrency2(e.target.value)}
-                        >
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="JPY">JPY</option>
-                            <option value="UZS">UZS</option>
-                        </select>
-                        <i className="fas fa-exchange-alt"></i>
-                    </div>
+                    <label htmlFor="currency2" className="calculateLabel">Konvertatsiya qilmoqchi bo'lgan valuta:</label>
+                    <select
+                        id="currency2"
+                        className="calculateSelect"
+                        value={currency2}
+                        onChange={(e) => setCurrency2(e.target.value)}
+                    >
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="JPY">JPY</option>
+                        <option value="UZS">UZS</option>
+                    </select>
                 </div>
 
                 <div className="calculateFormGroup">
                     <label htmlFor="amount" className="calculateLabel">Qiymat Kiriting:</label>
-                    <div style={{ position: "relative" }}>
-                        <input
-                            type="number"
-                            id="amount"
-                            className="calculateInput"
-                            value={amount}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                if (value === '' || (!isNaN(value) && parseFloat(value) >= 0)) {
-                                    setAmount(value);
-                                }
-                            }}
-                            min="0"
-                            step="0.01"
-                            placeholder="0.00"
-                        />
-                        <i className="fas fa-coins"></i>
-                    </div>
+                    <input
+                        type="number"
+                        id="amount"
+                        className="calculateInput"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    />
                 </div>
 
                 <button
@@ -129,13 +115,14 @@ function CalculateFunc() {
                 {result && (
                     <div className="calculateResult">
                         <h3 className="calculateResultText">
-                            <i className="fas fa-check-circle"></i> Natija: {result} {currency2}
+                            <i className="fas fa-check-circle"></i>
+                            {amount} {currency1} ≈ <span className="highlight">{parseFloat(result.amount).toLocaleString()}</span> {currency2}
                         </h3>
+                        <p className="calculateRate">1 {currency1} ≈ {result.rate.toLocaleString()} {currency2}</p>
                     </div>
                 )}
 
                 {error && <div className="calculateError"><i className="fas fa-exclamation-circle"></i> {error}</div>}
-
             </div>
         </div>
     );

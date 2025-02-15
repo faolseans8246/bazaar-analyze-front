@@ -2,8 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./analyzes.css";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
-
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+} from "chart.js";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const cryptos = ["btc", "eth"];
@@ -21,19 +29,25 @@ function AnalyzesFunc() {
                 for (const crypto of cryptos) {
                     const response = await axios.get(`http://localhost:1972/api/crypt/${crypto}`);
 
-                    console.log(`Response for ${crypto}:`, response.data);
+                    console.log(`Response for ${crypto}:`, response.data); // API dan kelayotgan ma'lumotni tekshirish
 
-                    const price = response.data.data[crypto.toUpperCase()];
+                    const price = response.data?.data?.[crypto.toUpperCase()];
+
                     if (price) {
                         const newPoint = { time: new Date().toLocaleTimeString(), price };
 
-                        newData[crypto] = [
-                            ...cryptoData[crypto].slice(-20),
-                            newPoint
-                        ];
+                        // Eski ma'lumotlarni saqlab qolib, yangisini qo'shamiz
+                        newData[crypto] = [...(cryptoData[crypto] || []), newPoint].slice(-20);
+                    } else {
+                        console.warn(`Price not found for ${crypto}`);
                     }
                 }
-                setCryptoData((prevData) => ({ ...prevData, ...newData }));
+
+                setCryptoData((prevData) => ({
+                    btc: newData.btc || prevData.btc,
+                    eth: newData.eth || prevData.eth,
+                }));
+
             } catch (error) {
                 console.error("Error fetching crypto data:", error);
             }
@@ -43,14 +57,19 @@ function AnalyzesFunc() {
         intervalId = setInterval(fetchData, updateInterval);
 
         return () => clearInterval(intervalId);
-    }, [updateInterval]);
+    }, [updateInterval]); // `cryptoData` ni dependency-ga qo‘shmadim, aks holda cheksiz render loop bo‘ladi
 
     return (
         <div className="analyzeContainer">
             <h2>Crypto Prices Chart</h2>
 
             <label className="analyze-label-part" htmlFor="interval">Update Interval: </label>
-            <select className="analyze-select-part" id="interval" value={updateInterval} onChange={(e) => setUpdateInterval(Number(e.target.value))}>
+            <select
+                className="analyze-select-part"
+                id="interval"
+                value={updateInterval}
+                onChange={(e) => setUpdateInterval(Number(e.target.value))}
+            >
                 <option value="1000">1 sec</option>
                 <option value="2000">2 sec</option>
                 <option value="5000">5 sec</option>
@@ -61,11 +80,15 @@ function AnalyzesFunc() {
             <div className="grid-container">
                 {cryptos.map((crypto) => {
                     const data = {
-                        labels: cryptoData[crypto].map((item) => item.time).slice(-10), // Oxirgi 10 ta vaqt
+                        labels: cryptoData[crypto]?.length
+                            ? cryptoData[crypto].map((item) => item.time).slice(-10)
+                            : [],
                         datasets: [
                             {
                                 label: `${crypto.toUpperCase()} Price (USD)`,
-                                data: cryptoData[crypto].map((item) => item.price).slice(-10),
+                                data: cryptoData[crypto]?.length
+                                    ? cryptoData[crypto].map((item) => item.price).slice(-10)
+                                    : [],
                                 borderColor: "rgb(8,238,132)",
                                 backgroundColor: "rgba(239,203,9,0.5)",
                                 borderWidth: 2,
@@ -77,7 +100,14 @@ function AnalyzesFunc() {
                     return (
                         <div key={crypto} className="chartWrapper">
                             <h3>{crypto.toUpperCase()} Price Chart</h3>
-                            <Line className="analyze-status-line" data={data} options={{ responsive: true, plugins: { legend: { labels: { color: "#fff" } } } }} />
+                            <Line
+                                className="analyze-status-line"
+                                data={data}
+                                options={{
+                                    responsive: true,
+                                    plugins: { legend: { labels: { color: "#fff" } } },
+                                }}
+                            />
                         </div>
                     );
                 })}
