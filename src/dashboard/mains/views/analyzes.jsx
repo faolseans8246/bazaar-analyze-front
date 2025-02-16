@@ -27,16 +27,15 @@ function AnalyzesFunc() {
             try {
                 const newData = {};
                 for (const crypto of cryptos) {
-                    const response = await axios.get(`http://localhost:1972/api/crypt/${crypto}`);
+                    const response = await axios.get(`https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/crypt/${crypto}`);
 
-                    console.log(`Response for ${crypto}:`, response.data); // API dan kelayotgan ma'lumotni tekshirish
+                    console.log(`Response for ${crypto}:`, response.data);
 
                     const price = response.data?.data?.[crypto.toUpperCase()];
 
                     if (price) {
                         const newPoint = { time: new Date().toLocaleTimeString(), price };
 
-                        // Eski ma'lumotlarni saqlab qolib, yangisini qo'shamiz
                         newData[crypto] = [...(cryptoData[crypto] || []), newPoint].slice(-20);
                     } else {
                         console.warn(`Price not found for ${crypto}`);
@@ -57,7 +56,7 @@ function AnalyzesFunc() {
         intervalId = setInterval(fetchData, updateInterval);
 
         return () => clearInterval(intervalId);
-    }, [updateInterval]); // `cryptoData` ni dependency-ga qo‘shmadim, aks holda cheksiz render loop bo‘ladi
+    }, [updateInterval]);
 
     return (
         <div className="analyzeContainer">

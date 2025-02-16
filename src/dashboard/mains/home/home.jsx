@@ -58,7 +58,7 @@ function HomeFunc() {
             setErrorMessage(null);
 
             try {
-                const response = await fetch("http://localhost:1972/api/population/world");
+                const response = await fetch("https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/population/world");
 
                 if (!response.ok) {
                     throw new Error("Serverdan xato javob olindi.");

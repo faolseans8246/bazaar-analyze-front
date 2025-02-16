@@ -7,7 +7,7 @@ function ValutestatusFunc() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:1972/api/combinant/metalls")
+        fetch("https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/combinant/metalls")
             .then(response => response.json())
             .then(data => {
                 if (data.success) {

@@ -7,7 +7,7 @@ function GlobalstatusFunc() {
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
-                const response = await fetch('http://localhost:1972/api/currency/global');
+                const response = await fetch('https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/currency/global');
                 const data = await response.json();
                 setGlobalCurrency(data.data);
             } catch (error) {

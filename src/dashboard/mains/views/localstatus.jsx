@@ -8,7 +8,7 @@ function LocalstatusFunc() {
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
-                const response = await fetch('http://localhost:1972/api/currency/all');
+                const response = await fetch('https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/currency/all');
                 const data = await response.json();
                 setCurrencyData(data.data); // API javobidan valyutalar ro‘yxatini olish
             } catch (error) {

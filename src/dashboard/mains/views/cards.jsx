@@ -14,13 +14,13 @@ const CardManager = () => {
     }, []);
 
     const fetchCards = () => {
-        axios.get("http://localhost:1972/api/cards")
+        axios.get("https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/cards")
             .then(response => setCards(response.data))
             .catch(error => console.error("Error fetching cards:", error));
     };
 
     const addCard = () => {
-        axios.post("http://localhost:1972/api/cards/create", newCard)
+        axios.post("https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/cards/create", newCard)
             .then(response => {
                 if (response.data.success) {
                     setCards([...cards, response.data.data]);
@@ -31,7 +31,7 @@ const CardManager = () => {
     };
 
     const fetchTransactions = (cardId) => {
-        axios.get(`http://localhost:1972/api/transaction/by-card/${cardId}`)
+        axios.get(`https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/transaction/by-card/${cardId}`)
             .then(response => setTransactions(response.data))
             .catch(error => console.error("Error fetching transactions:", error));
     };
@@ -44,7 +44,7 @@ const CardManager = () => {
             return;
         }
 
-        axios.post(`http://localhost:1972/api/transaction/update/${newTransaction.cardId}/${newTransaction.toCardId}`, {
+        axios.post(`https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/transaction/update/${newTransaction.cardId}/${newTransaction.toCardId}`, {
             amount: newTransaction.amount
         })
             .then(response => {

@@ -7,7 +7,7 @@ function NewsFunc() {
     const [newsPerPage] = useState(3);
 
     useEffect(() => {
-        fetch("http://localhost:1972/api/news/daily")
+        fetch("https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/news/daily")
             .then(response => response.json())
             .then(data => setNews(data.data))  // `data` obyekti ichidan `data` arrayni olish
             .catch(error => console.error("Error fetching news:", error));

@@ -22,7 +22,7 @@ function CalculateFunc() {
         }
 
         try {
-            const response = await fetch(`http://localhost:1972/api/calculate/rates?from=${currency1}&to=${currency2}&amount=${parsedAmount}`);
+            const response = await fetch(`https://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/calculate/rates?from=${currency1}&to=${currency2}&amount=${parsedAmount}`);
             const data = await response.json();
 
             console.log("Backenddan kelgan javob:", data);
