@@ -91,7 +91,7 @@ function HomeFunc() {
     useEffect(() => {
         const fetchIPDetails = async () => {
             try {
-                const response = await fetch("http://localhost:1972/api/locations/address");
+                const response = await fetch("ttps://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/locations/address");
                 const data = await response.json();
 
                 console.log("Backend Response:", data);
@@ -119,7 +119,7 @@ function HomeFunc() {
     const fetchWeather = async (latitude, longitude) => {
         try {
             const location = "some-location";
-            const url = `http://localhost:1972/api/weather/${location}?lat=${latitude}&lon=${longitude}`;
+            const url = `ttps://bazaar-analyze-c1d62cd1ada0.herokuapp.com/api/weather/${location}?lat=${latitude}&lon=${longitude}`;
             console.log("Fetching weather data from URL:", url);
 
             const response = await fetch(url);
